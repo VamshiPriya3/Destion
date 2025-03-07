@@ -1,74 +1,65 @@
 
-# Getting Started with Create React App
+# Invoice Generation Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based invoice management portal where store owners can manage their invoices and products. The application allows for invoice generation, product management (CRUD), and PDF generation of invoices.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Invoice Management**: View and manage invoices, including item-wise details, calculations (with and without tax), and PDF generation.
+- **Product Management**: Add, edit, delete, and list products for store owners.
+- **Authentication and Authorization**: Store owners can log in with their credentials to view and manage their store's invoices and products.
+- **PDF Generation**: Invoices can be downloaded as PDFs using the jsPDF library.
+- **Responsive Design**: The application is responsive and adapts to different screen sizes.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Frontend library for building user interfaces.
+- **React Router**: For routing and navigation.
+- **Axios**: For making HTTP requests to fetch data from APIs.
+- **jsPDF**: For generating PDF files of invoices.
+- **Material UI**: For UI components and styling (or use Bootstrap or other libraries if preferred).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/VamshiPriya3/Destion.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
+    ```bash
+    cd destion
+    ```
 
-### `npm run build`
+3. Install the required dependencies:
+    ```bash
+    npm install
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the development server:
+    ```bash
+    npm start
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. The application should now be running at [http://localhost:3000](http://localhost:3000).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How to Use
 
-### `npm run eject`
+1. **Login**: Store owners can log in using their store credentials to manage their store's invoices and products.
+2. **Manage Products**: Users can add, edit, and delete products using the Product Management section.
+3. **Manage Invoices**: View and generate invoices based on the product list. You can also download invoices as PDFs.
+4. **Filter/Search**: Use the search bar to find products by name or filter invoices by store or date.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This application is deployed on **Vercel**. You can access the live application here:
+[Link to live application](your-live-app-link)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## File Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Here’s a quick overview of the project structure:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Destion
 
