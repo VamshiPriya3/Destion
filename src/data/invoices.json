@@ -1,0 +1,23 @@
+[
+  {
+    "storeName": "ABC Electronics",
+    "orderId": "INV12345",
+    "date": "2025-03-06",
+    "items": [
+      {
+        "itemName": "Laptop",
+        "quantity": 1,
+        "regularPrice": 50000,
+        "dealPrice": 45000,
+        "tax": 18
+      },
+      {
+        "itemName": "Mouse",
+        "quantity": 2,
+        "regularPrice": 800,
+        "dealPrice": 750,
+        "tax": 5
+      }
+    ]
+  }
+]
