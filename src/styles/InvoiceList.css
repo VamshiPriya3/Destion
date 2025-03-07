@@ -1,0 +1,40 @@
+
+
+.invoice-list {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .invoice-list h2 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .invoice-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .invoice-list li {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .invoice-list li:hover {
+    transform: translateY(-5px);
+  }
+  
+  .invoice-list li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+  }
+  
+  .invoice-list li a:hover {
+    color: #4CAF50;
+  }
+  
