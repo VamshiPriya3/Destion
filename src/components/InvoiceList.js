@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getInvoices } from "../services/invoiceService";
 import InvoiceDetail from "./InvoiceDetail";
+import "../styles/InvoiceList.css";
 
 const InvoiceList = ({ storeName }) => {
   const [invoices, setInvoices] = useState([]);

@@ -6,6 +6,7 @@ import InvoiceList from "./components/InvoiceList";
 import ProductDetail from "./components/ProductDetail";
 import InvoiceDetail from "./components/InvoiceDetail";
 import { getLoggedInStore, logout } from "./services/authService";
+import './styles/global.css';
 
 const App = () => {
   const [loggedInStore, setLoggedInStore] = useState(null);
