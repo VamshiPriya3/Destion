@@ -1,46 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { deleteProduct } from "../services/productService";
-import ProductForm from "./ProductForm"; // Import ProductForm
+import { getProducts } from "../services/productService"; // Assuming you have a productService
+import ProductCard from "./ProductCard";
 
 const ProductList = ({ onSelectProduct, storeName }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [storeFilter, setStoreFilter] = useState("All");
-  const [sortOption, setSortOption] = useState("");
-  const [stores, setStores] = useState([]);
-  const [products, setProducts] = useState(productData);
+  const [products, setProducts] = useState([]);
 
-  const handleAddProduct = (newProduct) => {
-    setProducts((prevProducts) => [...prevProducts, newProduct]);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchedProducts = await getProducts(storeName); // Fetch products based on store
+      setProducts(fetchedProducts);
+    };
+    fetchProducts();
+  }, [storeName]);
 
   return (
-    <div>
-      <h2>Products</h2>
-
-      
-      <ProductForm onSaveProduct={handleAddProduct} />
-
-      
-        type="text"
-        placeholder="Search products..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      
-
-      <ul>
-        {sortedProducts.length > 0 ? (
-          sortedProducts.map((product) => (
-            <li key={product.id}>
-              {product.productName} - ₹{product.price} ({product.storeName})
-              <button onClick={() => handleDelete(product.id)}>Delete</button>
-            </li>
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
-      </ul>
+    <div className="row">
+      {products.map((product) => (
+        <div className="col-md-4 col-sm-6" key={product.id}>
+          <ProductCard product={product} onClick={() => onSelectProduct(product)} />
+        </div>
+      ))}
     </div>
   );
 };

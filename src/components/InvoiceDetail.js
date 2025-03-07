@@ -1,41 +1,48 @@
 import React from "react";
+import jsPDF from "jspdf";
 
-const InvoiceDetail = ({ invoice, onBack }) => {
-  if (!invoice) {
-    return <p>No invoice selected.</p>;
-  }
+const InvoiceDetail = ({ invoice }) => {
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    // Add title
+    doc.setFontSize(20);
+    doc.text("Invoice", 20, 20);
+
+    // Add invoice details
+    doc.setFontSize(12);
+    doc.text(`Invoice ID: ${invoice.id}`, 20, 30);
+    doc.text(`Store: ${invoice.storeName}`, 20, 40);
+    doc.text(`Date: ${invoice.date}`, 20, 50);
+
+    // Add invoice items
+    let y = 60;
+    invoice.items.forEach((item) => {
+      doc.text(`${item.productName} - ₹${item.price}`, 20, y);
+      y += 10;
+    });
+
+    // Add total amount
+    doc.text(`Total: ₹${invoice.totalAmount}`, 20, y + 10);
+
+    // Save the PDF
+    doc.save(`invoice_${invoice.id}.pdf`);
+  };
 
   return (
     <div>
-      <h2>Invoice Details</h2>
-      <p><strong>Invoice Number:</strong> {invoice.invoiceNumber}</p>
-      <p><strong>Store:</strong> {invoice.storeName}</p>
-      <p><strong>Date:</strong> {invoice.date}</p>
-      <p><strong>Total Amount:</strong> ₹{invoice.totalAmount}</p>
-      <p><strong>Items:</strong></p>
+      <h2>Invoice Detail</h2>
+      <button onClick={generatePDF}>Download PDF</button>
       <ul>
         {invoice.items.map((item, index) => (
           <li key={index}>
-            {item.productName} - ₹{item.price} (Qty: {item.quantity})
+            {item.productName} - ₹{item.price}
           </li>
         ))}
       </ul>
-
-      <button onClick={onBack} style={buttonStyle}>
-        Back to Invoice List
-      </button>
+      <p>Total: ₹{invoice.totalAmount}</p>
     </div>
   );
-};
-
-// Button Styling
-const buttonStyle = {
-  marginTop: "10px",
-  padding: "5px 10px",
-  backgroundColor: "gray",
-  color: "white",
-  border: "none",
-  cursor: "pointer",
 };
 
 export default InvoiceDetail;

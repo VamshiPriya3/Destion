@@ -18,16 +18,32 @@ const Login = ({ setLoggedInStore }) => {
   };
 
   return (
-    <div>
-      <h2>Store Owner Login</h2>
-      <label>Store Name: </label>
-      <input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} />
-      <br />
-      <label>Password: </label>
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <br />
-      <button onClick={handleLogin}>Login</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="container d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+      <div className="card p-4" style={{ width: "400px" }}>
+        <h2 className="text-center mb-4">Store Owner Login</h2>
+        <div className="form-group mb-3">
+          <label>Store Name:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={storeName}
+            onChange={(e) => setStoreName(e.target.value)}
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label>Password:</label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="btn btn-primary w-100" onClick={handleLogin}>
+          Login
+        </button>
+        {error && <p className="text-danger mt-3">{error}</p>}
+      </div>
     </div>
   );
 };

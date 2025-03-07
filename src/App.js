@@ -15,7 +15,6 @@ const App = () => {
   useEffect(() => {
     const store = getLoggedInStore();
     if (store) {
-      console.log("Logged-in Store Found:", store);
       setLoggedInStore(store);
     }
   }, []);
@@ -27,27 +26,22 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        {/* Display Logged In Store and Logout Button */}
+      <div className="container mt-5">
         {loggedInStore && (
-          <div>
+          <div className="d-flex justify-content-between mb-4">
             <h2>Welcome, {loggedInStore}</h2>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         )}
 
-       
         <Routes>
-         
           <Route
             path="/"
             element={loggedInStore ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
           />
-
-          {/* Login Route */}
           <Route path="/login" element={<Login setLoggedInStore={setLoggedInStore} />} />
-
-          {/* Dashboard Route */}
           <Route
             path="/dashboard"
             element={
@@ -62,32 +56,22 @@ const App = () => {
               )
             }
           />
-
-         
           <Route
             path="/product/:id"
-            element={
-              selectedProduct ? (
-                <ProductDetail product={selectedProduct} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
+            element={selectedProduct ? (
+              <ProductDetail product={selectedProduct} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )}
           />
-
-         
           <Route
             path="/invoice/:id"
-            element={
-              selectedInvoice ? (
-                <InvoiceDetail invoice={selectedInvoice} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
+            element={selectedInvoice ? (
+              <InvoiceDetail invoice={selectedInvoice} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )}
           />
-
-          
           <Route path="*" element={<h2>404 - Page Not Found</h2>} />
         </Routes>
       </div>

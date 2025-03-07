@@ -1,45 +1,32 @@
+import React, { useEffect, useState } from "react";
+import ProductList from "./ProductList"; 
+import InvoiceList from "./InvoiceList"; 
 
-
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import '../styles/Dashboard.css';  
-
-function Dashboard() {
-  const [invoices, setInvoices] = useState([]);
-  const [products, setProducts] = useState([]);
+const Dashboard = ({ storeName }) => {
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-     
-    axios.get('/path/to/invoices.json') 
-      .then(response => setInvoices(response.data))
-      .catch(error => console.error('Error fetching invoices:', error));
+    
+    setLoading(false); 
+  }, [storeName]);
 
-    axios.get('/path/to/products.json') 
-      .then(response => setProducts(response.data))
-      .catch(error => console.error('Error fetching products:', error));
-  }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <div className="dashboard">
-      <h2>Dashboard</h2>
-      
-      <div className="section">
-        <h3>Invoices</h3>
-        <p>Total Invoices: {invoices.length}</p>
-        <Link to="/invoices">View All Invoices</Link>
+    <div>
+      <h1>Welcome to your Dashboard, {storeName}</h1>
+      <div>
+        <h2>Product List</h2>
+        <ProductList storeName={storeName} />
       </div>
-
-     
-      <div className="section">
-        <h3>Products</h3>
-        <p>Total Products: {products.length}</p>
-        <Link to="/products">View All Products</Link>
+      <div>
+        <h2>Invoice List</h2>
+        <InvoiceList storeName={storeName} />
       </div>
-
-      
     </div>
   );
-}
+};
 
 export default Dashboard;
