@@ -1,44 +1,46 @@
+// components/ProductForm.js
+import React, { useState } from "react";
 
-
-import React, { useState } from 'react';
-import axios from 'axios';
-
-function ProductForm() {
-  const [product, setProduct] = useState({ name: '', description: '', price: '' });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct(prevState => ({ ...prevState, [name]: value }));
-  };
+const ProductForm = ({ onSaveProduct }) => {
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState("");
+  const [storeName, setStoreName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/path/to/your/api/products', product)
-      .then(response => {
-        console.log('Product added successfully', response);
-      })
-      .catch(error => {
-        console.error('Error adding product:', error);
-      });
+    const newProduct = { id: Date.now(), productName, price, storeName };
+    onSaveProduct(newProduct);
+    setProductName("");
+    setPrice("");
+    setStoreName("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Product Name:
-        <input type="text" name="name" value={product.name} onChange={handleChange} />
-      </label>
-      <label>
-        Description:
-        <textarea name="description" value={product.description} onChange={handleChange}></textarea>
-      </label>
-      <label>
-        Price:
-        <input type="number" name="price" value={product.price} onChange={handleChange} />
-      </label>
-      <button type="submit">Save Product</button>
+      <input
+        type="text"
+        value={productName}
+        onChange={(e) => setProductName(e.target.value)}
+        placeholder="Product Name"
+        required
+      />
+      <input
+        type="number"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        placeholder="Price"
+        required
+      />
+      <input
+        type="text"
+        value={storeName}
+        onChange={(e) => setStoreName(e.target.value)}
+        placeholder="Store Name"
+        required
+      />
+      <button type="submit">Add Product</button>
     </form>
   );
-}
+};
 
 export default ProductForm;

@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "storeName": "Store A",
+      "productName": "Laptop",
+      "description": "High-performance laptop",
+      "price": 50000
+    },
+    {
+      "id": 2,
+      "storeName": "Store B",
+      "productName": "Smartphone",
+      "description": "Latest model smartphone",
+      "price": 30000
+    },
+    {
+      "id": 3,
+      "storeName": "Store A",
+      "productName": "Headphones",
+      "description": "Noise-canceling headphones",
+      "price": 5000
+    }
+  ]
+  

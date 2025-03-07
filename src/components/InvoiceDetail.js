@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
 
-function InvoiceDetail() {
-  const { id } = useParams();
-  const [invoice, setInvoice] = useState(null);
-
-  useEffect(() => {
-    axios.get(`/path/to/your/invoice/detail/${id}.json`)
-      .then(response => {
-        setInvoice(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching invoice details:', error);
-      });
-  }, [id]);
-
-  if (!invoice) return <div>Loading...</div>;
+const InvoiceDetail = ({ invoice, onBack }) => {
+  if (!invoice) {
+    return <p>No invoice selected.</p>;
+  }
 
   return (
     <div>
-      <h2>{invoice.storeName} - {invoice.orderId}</h2>
-      <p>Order Date: {invoice.date}</p>
-      <p>Item Total: {invoice.itemTotal}</p>
-      <p>Tax: {invoice.tax}</p>
-      <p>Grand Total: {invoice.grandTotal}</p>
+      <h2>Invoice Details</h2>
+      <p><strong>Invoice Number:</strong> {invoice.invoiceNumber}</p>
+      <p><strong>Store:</strong> {invoice.storeName}</p>
+      <p><strong>Date:</strong> {invoice.date}</p>
+      <p><strong>Total Amount:</strong> ₹{invoice.totalAmount}</p>
+      <p><strong>Items:</strong></p>
+      <ul>
+        {invoice.items.map((item, index) => (
+          <li key={index}>
+            {item.productName} - ₹{item.price} (Qty: {item.quantity})
+          </li>
+        ))}
+      </ul>
+
+      <button onClick={onBack} style={buttonStyle}>
+        Back to Invoice List
+      </button>
     </div>
   );
-}
+};
+
+// Button Styling
+const buttonStyle = {
+  marginTop: "10px",
+  padding: "5px 10px",
+  backgroundColor: "gray",
+  color: "white",
+  border: "none",
+  cursor: "pointer",
+};
 
 export default InvoiceDetail;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://yourapiurl.com/products"; 
+const API_URL = "https://yourapiurl.com/products"; // Replace with your actual API URL
 
 export const getProducts = async () => {
   try {

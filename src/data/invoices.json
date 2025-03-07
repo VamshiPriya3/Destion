@@ -1,38 +1,24 @@
 [
-    {
-      "store": "Store 1",
-      "orderId": "ORD123",
-      "date": "2025-03-01",
-      "items": [
-        {
-          "name": "Product A",
-          "quantity": 2,
-          "regularPrice": 100,
-          "dealPrice": 90,
-          "tax": 15
-        },
-        {
-          "name": "Product B",
-          "quantity": 1,
-          "regularPrice": 150,
-          "dealPrice": 140,
-          "tax": 20
-        }
-      ]
-    },
-    {
-      "store": "Store 2",
-      "orderId": "ORD124",
-      "date": "2025-03-02",
-      "items": [
-        {
-          "name": "Product C",
-          "quantity": 3,
-          "regularPrice": 120,
-          "dealPrice": 110,
-          "tax": 18
-        }
-      ]
-    }
-  ]
-  
+  {
+    "id": 1,
+    "invoiceNumber": "INV001",
+    "storeName": "Store A",
+    "date": "2025-03-01",
+    "totalAmount": 1500,
+    "items": [
+      { "productName": "Product 1", "price": 500, "quantity": 1 },
+      { "productName": "Product 2", "price": 1000, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 2,
+    "invoiceNumber": "INV002",
+    "storeName": "Store B",
+    "date": "2025-03-05",
+    "totalAmount": 2000,
+    "items": [
+      { "productName": "Product 3", "price": 1200, "quantity": 1 },
+      { "productName": "Product 4", "price": 800, "quantity": 1 }
+    ]
+  }
+]
