@@ -1,18 +1,25 @@
-// src/pages/InvoiceDetail.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import invoices from '../data/invoices'; // Import mock data
+import generatePDF from '../utils/generatePDF';
 
 const InvoiceDetail = () => {
-  const { id } = useParams();  // Get invoice ID from the URL
+  const { id } = useParams();   
   const [invoice, setInvoice] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Find the invoice by ID
+   
     const foundInvoice = invoices.find((invoice) => invoice.id === parseInt(id));
     setInvoice(foundInvoice);
   }, [id]);
+
+  const handleDownloadPDF = () => {
+    if (invoice) {
+      generatePDF(invoice);
+    }
+  };
 
   if (!invoice) {
     return (
@@ -34,7 +41,7 @@ const InvoiceDetail = () => {
       <p>Deal Price: ${invoice.dealPrice}</p>
       <p>Item Total: ${invoice.itemTotal}</p>
       <p>Item-wise Tax: ${invoice.itemTax}</p>
-      <button onClick={() => navigate('/invoices')}>Back to Invoice List</button>
+      <button onClick={handleDownloadPDF}>Download PDF</button>
     </div>
   );
 };

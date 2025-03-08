@@ -1,17 +1,20 @@
+// src/pages/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [username, setUsername] = useState('');
+const Login = () => {
+  const [storeName, setStoreName] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-   
-    if (username === 'storeOwner' && password === 'password123') {
-     
-      localStorage.setItem('user', JSON.stringify({ username })); 
-      navigate('/invoice-list');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Mock authentication (you can replace this with real authentication logic)
+    if (storeName === 'Store A' && password === 'password123') {
+      localStorage.setItem('authenticated', 'true');
+      localStorage.setItem('storeName', storeName);
+      navigate('/home');
     } else {
       alert('Invalid credentials');
     }
@@ -19,26 +22,28 @@ function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
-      <div>
-        <label>Username: </label>
-        <input 
-          type="text" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-        />
-      </div>
-      <div>
-        <label>Password: </label>
-        <input 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-        />
-      </div>
-      <button onClick={handleLogin}>Log In</button>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Store Name</label>
+          <input
+            type="text"
+            value={storeName}
+            onChange={(e) => setStoreName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
-}
+};
 
 export default Login;
