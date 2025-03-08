@@ -1,34 +1,32 @@
-// src/pages/InvoiceList.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';  // Import Link for navigation
-import invoices from '../data/invoices';  // Import mock data
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import invoices from '../data/invoices'; // Correct import
 
 const InvoiceList = () => {
-  const [invoiceData, setInvoiceData] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    setInvoiceData(invoices);  // Set mock data to state
-  }, []);
+  const handleViewInvoice = (invoiceId) => {
+    navigate(`/invoice/${invoiceId}`);
+  };
+
+  console.log(invoices);  
 
   return (
     <div>
       <h2>Invoice List</h2>
-      {invoiceData.length > 0 ? (
-        <ul>
-          {invoiceData.map((invoice) => (
+      <ul>
+        {invoices && invoices.length > 0 ? (
+          invoices.map((invoice) => (
             <li key={invoice.id}>
-              <h3>Store: {invoice.storeName}</h3>
-              <p>Order ID: {invoice.orderId}</p>
-              <p>Date: {invoice.date}</p>
-              <p>Quantity: {invoice.quantity}</p>
-              <p>Item Total: ${invoice.itemTotal}</p>
-              <Link to={`/invoice/${invoice.id}`}>View Details</Link>
+              <h4>{invoice.orderId}</h4>
+              <p>{invoice.date}</p>
+              <button onClick={() => handleViewInvoice(invoice.id)}>View</button>
             </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No invoices available.</p>
-      )}
+          ))
+        ) : (
+          <p>No invoices available</p>
+        )}
+      </ul>
     </div>
   );
 };

@@ -1,62 +1,19 @@
-
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import InvoiceList from './pages/InvoiceList';
-import InvoiceDetail from './pages/InvoiceDetail';
-import ProductList from './pages/ProductList';
-import ProductDetail from './pages/ProductDetail';
-import Login from './pages/Login';  
+import Login from './pages/Login';
 import PrivateRoute from './pages/PrivateRoute';  
-
+import InvoiceDetail from './pages/InvoiceDetail';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/home"
-          element={
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/invoices"
-          element={
-            <PrivateRoute>
-              <InvoiceList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/invoice/:id"
-          element={
-            <PrivateRoute>
-              <InvoiceDetail />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <PrivateRoute>
-              <ProductList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/product/:id"
-          element={
-            <PrivateRoute>
-              <ProductDetail />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/invoice-list" element={<PrivateRoute element={<InvoiceList />} />} />
+        <Route path="/invoice/:invoiceId" element={<InvoiceDetail />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
