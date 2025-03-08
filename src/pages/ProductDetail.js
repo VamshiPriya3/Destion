@@ -1,15 +1,14 @@
 // src/pages/ProductDetail.js
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import products from '../data/products'; // Import mock product data
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import products from "../data/products";  // Import mock data
 
 const ProductDetail = () => {
-  const { id } = useParams(); // Get product ID from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Find the product by ID
     const foundProduct = products.find((product) => product.id === parseInt(id));
     setProduct(foundProduct);
   }, [id]);
@@ -18,7 +17,7 @@ const ProductDetail = () => {
     return (
       <div>
         <h2>Product Not Found</h2>
-        <button onClick={() => navigate('/products')}>Back to Product List</button>
+        <button onClick={() => navigate("/product-list")}>Back to Product List</button>
       </div>
     );
   }
@@ -29,7 +28,7 @@ const ProductDetail = () => {
       <h3>{product.productName}</h3>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
-      <button onClick={() => navigate('/products')}>Back to Product List</button>
+      <p>Store: {product.storeName}</p>
     </div>
   );
 };
