@@ -1,5 +1,7 @@
+// src/pages/InvoiceList.js
 import React, { useState, useEffect } from 'react';
-import invoices from '../data/invoices'; // Correctly import the invoices data
+import { Link } from 'react-router-dom';  // Import Link for navigation
+import invoices from '../data/invoices';  // Import mock data
 
 const InvoiceList = () => {
   const [invoiceData, setInvoiceData] = useState([]);
@@ -20,6 +22,7 @@ const InvoiceList = () => {
               <p>Date: {invoice.date}</p>
               <p>Quantity: {invoice.quantity}</p>
               <p>Item Total: ${invoice.itemTotal}</p>
+              <Link to={`/invoice/${invoice.id}`}>View Details</Link>
             </li>
           ))}
         </ul>

@@ -1,31 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams to fetch invoice ID from URL
+// src/pages/InvoiceDetail.js
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import invoices from '../data/invoices'; // Import mock data
 
-function InvoiceDetail() {
-  const { id } = useParams(); // Get the invoice ID from the URL
+const InvoiceDetail = () => {
+  const { id } = useParams();  // Get invoice ID from the URL
   const [invoice, setInvoice] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetching the invoice detail using the invoice ID
-    const fetchInvoiceDetail = async () => {
-      const response = await fetch(`/path-to-your-mock-invoice-data/${id}`); // Replace with actual API or mock data
-      const data = await response.json();
-      setInvoice(data);
-    };
+    // Find the invoice by ID
+    const foundInvoice = invoices.find((invoice) => invoice.id === parseInt(id));
+    setInvoice(foundInvoice);
+  }, [id]);
 
-    fetchInvoiceDetail();
-  }, [id]); // Fetch the data when the ID changes
-
-  if (!invoice) return <div>Loading...</div>;
+  if (!invoice) {
+    return (
+      <div>
+        <h2>Invoice Not Found</h2>
+        <button onClick={() => navigate('/invoices')}>Back to Invoice List</button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>Invoice Detail for {invoice.storeName}</h1>
+      <h2>Invoice Details</h2>
+      <h3>Store: {invoice.storeName}</h3>
       <p>Order ID: {invoice.orderId}</p>
       <p>Date: {invoice.date}</p>
-      {/* Display other details of the invoice */}
+      <p>Quantity: {invoice.quantity}</p>
+      <p>Regular Price: ${invoice.regularPrice}</p>
+      <p>Deal Price: ${invoice.dealPrice}</p>
+      <p>Item Total: ${invoice.itemTotal}</p>
+      <p>Item-wise Tax: ${invoice.itemTax}</p>
+      <button onClick={() => navigate('/invoices')}>Back to Invoice List</button>
     </div>
   );
-}
+};
 
 export default InvoiceDetail;
