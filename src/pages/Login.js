@@ -1,32 +1,42 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Logging in with", email, password);
+  const handleLogin = () => {
+   
+    if (username === 'storeOwner' && password === 'password123') {
+     
+      localStorage.setItem('user', JSON.stringify({ username })); 
+      navigate('/invoice-list');
+    } else {
+      alert('Invalid credentials');
+    }
   };
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email"
+      <h1>Login</h1>
+      <div>
+        <label>Username: </label>
+        <input 
+          type="text" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
         />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter password"
+      </div>
+      <div>
+        <label>Password: </label>
+        <input 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
         />
-        <button type="submit">Login</button>
-      </form>
+      </div>
+      <button onClick={handleLogin}>Log In</button>
     </div>
   );
 }

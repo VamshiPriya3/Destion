@@ -6,10 +6,10 @@ function InvoiceList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch invoices data when the component mounts
+ 
   useEffect(() => {
     axios
-      .get("https://api.example.com/invoices")  // Replace with actual API endpoint
+      .get("https://api.example.com/invoices")  
       .then((response) => {
         setInvoices(response.data);
         setLoading(false);
